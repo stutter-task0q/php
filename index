@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Quote Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyC+lOjl12nFY6eaaKHAiQ0YAZa62t3Qcm2lK1V8RwfdI44k6xCDntW8gszhVCPD" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>Random Quote Generator</h1>
+    <button id="generateButton">Generate Quote</button>
+    <div id="quoteContainer"></div>
+
+    <script>
+      document.getElementById("generateButton").addEventListener("click", function() {
+        $.ajax({
+          url: "https://api.quotable.io/random",
+          success: function(data) {
+            document.getElementById("quoteContainer").innerHTML = "<h3>" + data.content + "</h3><p>- " + data.author + "</p>";
+          },
+          error: function() {
+            document.getElementById("quoteContainer").innerHTML = "Failed to fetch a quote.";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
